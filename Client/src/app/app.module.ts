@@ -12,6 +12,7 @@ import { HomeModule } from './modules/home/home.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './modules/login/login.component';
 import { AdminModule } from './modules/admin/admin.module';
+import { CartModule } from './modules/cart/cart.module';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -24,6 +25,7 @@ import { AdminModule } from './modules/admin/admin.module';
     AppStoreModule,
     HomeModule,
     AdminModule,
+    CartModule,
     ReactiveFormsModule,
   ],
   providers: [],
