@@ -6,7 +6,7 @@ import {
   loadUserSuccess,
 } from '../actions/user.actions';
 
-export const initialState: User | {} = {};
+export const initialState: User = {};
 
 export const userReducer = createReducer(
   initialState,
@@ -18,9 +18,6 @@ export const userReducer = createReducer(
   })
 );
 
-export function UserReducer(
-  state: User | undefined,
-  action: Action
-): User | {} {
+export function UserReducer(state: User | undefined, action: Action): User {
   return userReducer(state, action);
 }
