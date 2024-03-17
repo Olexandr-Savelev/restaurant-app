@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Dish } from 'src/app/models/dish.model';
 import { User } from 'src/app/models/user.model';
 
@@ -9,5 +9,5 @@ import { User } from 'src/app/models/user.model';
 })
 export class DishCardComponent {
   @Input() dish!: Dish;
-  @Input() isAdmin!: boolean;
+  @Input() user!: User | null;
 }

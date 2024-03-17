@@ -6,7 +6,7 @@ import {
   loadUserSuccess,
 } from '../actions/user.actions';
 
-export const initialState: User = {};
+export const initialState: User | null = {};
 
 export const userReducer = createReducer(
   initialState,

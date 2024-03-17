@@ -6,12 +6,7 @@
   >
     <ng-container *ngFor="let dish of dishes">
       <mat-grid-tile>
-        <ng-container *ngIf="user$ | async as user">
-          <app-dish-card
-            [dish]="dish"
-            [isAdmin]="user.isAdmin!"
-          ></app-dish-card>
-        </ng-container>
+        <app-dish-card [dish]="dish" [user]="user$ | async"></app-dish-card>
       </mat-grid-tile>
     </ng-container>
   </mat-grid-list>
