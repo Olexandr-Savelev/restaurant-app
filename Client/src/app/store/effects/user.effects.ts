@@ -2,8 +2,12 @@ import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
-import { loadUser, loadUserFailure, setUser } from '../actions/user.actions';
-import { User } from 'src/app/models/user.model';
+import {
+  loadUser,
+  loadUserFailure,
+  loadUserSuccess,
+  setUser,
+} from '../actions/user.actions';
 import { UserService } from 'src/app/shared/services/user.service';
 
 export class UserEffects {
@@ -14,7 +18,19 @@ export class UserEffects {
       ofType(loadUser),
       mergeMap(() =>
         this.userService.getUser().pipe(
-          map((user: User) => setUser({ user })),
+          map((user) => loadUserSuccess({ user })),
+          catchError((error) => of(loadUserFailure({ message: error.message })))
+        )
+      )
+    )
+  );
+
+  setUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(setUser),
+      mergeMap((action) =>
+        this.userService.setUser(action.userData).pipe(
+          map((user) => loadUserSuccess({ user })),
           catchError((error) => of(loadUserFailure({ message: error.message })))
         )
       )
