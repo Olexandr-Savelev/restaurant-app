@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from './shared/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'Restaurant';
-  constructor(private http: HttpClient) {}
+
+  constructor(private userService: UserService) {}
+
   ngOnInit(): void {
-    this.http.get(`./api/login`).subscribe(console.log);
+    this.userService.getUser().subscribe((user) => console.log(user));
   }
 }

@@ -8,7 +8,7 @@ import {
   loadDishesSuccess,
   loadDishesFailure,
 } from '../actions/dish.actions';
-import { DishService } from 'src/app/modules/home/services/dish.service';
+import { DishService } from 'src/app/shared/services/dish.service';
 
 @Injectable()
 export class DishEffects {

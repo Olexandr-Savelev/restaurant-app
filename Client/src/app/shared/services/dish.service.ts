@@ -7,9 +7,9 @@ import { Dish } from 'src/app/models/dish.model';
   providedIn: 'root',
 })
 export class DishService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getDishes(): Observable<Dish[]> {
-    return this.httpClient.get<Dish[]>(`./api/dish`);
+    return this.http.get<Dish[]>(`./api/dish`);
   }
 }
