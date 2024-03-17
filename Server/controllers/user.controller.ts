@@ -12,11 +12,11 @@ class UserController {
         return res.json({ error: "Password is incorrect" });
       }
 
-      const userParams = { name: user.name, isAdmin: user.isAdmin };
+      const userData = { name: user.name, isAdmin: user.isAdmin };
 
-      req.session.user = userParams;
+      req.session.user = userData;
 
-      return res.json({ user: userParams });
+      return res.json(userData);
     } catch (error) {
       let errorMessage = "Unknown error";
       if (error instanceof Error) {
@@ -28,7 +28,7 @@ class UserController {
 
   static async GetLoggedUser(req: Request, res: Response) {
     try {
-      return res.json({ user: req.session.user });
+      return res.json(req.session.user);
     } catch (error) {
       let errorMessage = "Unknown error";
       if (error instanceof Error) {

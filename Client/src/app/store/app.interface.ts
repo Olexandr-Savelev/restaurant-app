@@ -3,5 +3,5 @@ import { User } from '../models/user.model';
 
 export interface IAppState {
   dishes: Dish[];
-  user: User | {};
+  user: User;
 }

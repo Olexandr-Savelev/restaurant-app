@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Dish } from 'src/app/models/dish.model';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-dish-card',
   templateUrl: './dish-card.component.html',
-  styleUrls: ['./dish-card.component.scss']
+  styleUrls: ['./dish-card.component.scss'],
 })
 export class DishCardComponent {
-
+  @Input() dish!: Dish;
+  @Input() isAdmin!: boolean;
 }

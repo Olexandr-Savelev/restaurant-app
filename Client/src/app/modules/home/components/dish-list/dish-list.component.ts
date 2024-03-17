@@ -6,6 +6,8 @@ import { loadDishes } from 'src/app/store/actions/dish.actions';
 import { IAppState } from 'src/app/store/app.interface';
 import { selectAllDishes } from 'src/app/store/selectors/dish.selector';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { User } from 'src/app/models/user.model';
+import { selectUser } from 'src/app/store/selectors/user.selector';
 
 @Component({
   selector: 'app-dish-list',
@@ -14,12 +16,14 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 })
 export class DishListComponent implements OnInit {
   dishes$: Observable<Dish[]>;
+  user$: Observable<User>;
 
   constructor(
     private store: Store<IAppState>,
     private breakpointObserver: BreakpointObserver
   ) {
     this.dishes$ = this.store.pipe(select(selectAllDishes));
+    this.user$ = this.store.pipe(select(selectUser));
   }
 
   ngOnInit(): void {
