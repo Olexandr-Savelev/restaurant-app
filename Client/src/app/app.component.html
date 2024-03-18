@@ -1,12 +1,4 @@
-<mat-toolbar color="primary">
-  <span>My Restaurant</span>
-  <span class="spacer"></span>
-  <div>
-    <button mat-button routerLink="/">Menu</button>
-    <button mat-button routerLink="/cart" matBadge="10" matBadgeColor="warn">
-      Cart
-    </button>
-    <button mat-button routerLink="/login">Login</button>
-  </div>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<app-header></app-header>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

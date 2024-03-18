@@ -5,7 +5,7 @@ import authMiddleware from "../middleware/is-auth";
 
 router.get("/", DishController.getAllDishes);
 router.get("/:id", DishController.getDishById);
-router.post("/", authMiddleware, DishController.createDish);
+router.post("/", DishController.createDish);
 router.put("/:id", authMiddleware, DishController.updateDish);
 router.delete("/:id", authMiddleware, DishController.deleteDish);
 

@@ -10,7 +10,6 @@ export class DishService {
   constructor(private http: HttpClient) {}
 
   getDishes(): Observable<Dish[]> {
-    console.log(11);
     return this.http.get<Dish[]>(`./api/dish`);
   }
 }

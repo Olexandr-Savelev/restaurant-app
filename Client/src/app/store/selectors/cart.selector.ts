@@ -1,11 +1,8 @@
 import { createSelector } from '@ngrx/store';
 
-import { Dish } from 'src/app/models/dish.model';
 import { IAppState } from '../app.interface';
+import { Cart } from 'src/app/models/cart.model';
 
-export const selectDishState = (state: IAppState) => state.cart;
+export const selectCartState = (state: IAppState) => state.cart;
 
-export const selectAllDishes = createSelector(
-  selectDishState,
-  (cartList: Dish[]) => cartList
-);
+export const selectCart = createSelector(selectCartState, (cart: Cart) => cart);

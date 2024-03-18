@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <span>My Restaurant</span>
+  <span class="spacer"></span>
+  <div>
+    <button mat-button routerLink="/">Menu</button>
+    <button
+      mat-button
+      routerLink="/cart"
+      [matBadge]="itemsCount > 0 ? itemsCount : null"
+      matBadgeColor="warn"
+    >
+      Cart
+    </button>
+    <button mat-button routerLink="/login">Login</button>
+  </div>
+</mat-toolbar>
