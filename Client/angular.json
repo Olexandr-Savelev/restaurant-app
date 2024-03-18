@@ -60,7 +60,7 @@
         "serve": {
           "options": {
             "browserTarget": "your-application-name:build",
-            "proxyConfig": "src/dev-proxy.conf.json"
+            "proxyConfig": "src/proxy.conf.json"
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
