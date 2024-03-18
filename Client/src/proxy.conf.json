@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://restaurant-app-6jzn.vercel.app/",
+    "target": "https://restaurant-app-6jzn.vercel.app",
     "secure": false
   }
 }
