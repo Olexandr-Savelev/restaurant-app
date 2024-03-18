@@ -1,7 +1,7 @@
 <div *ngIf="dishes$ | async as dishes">
   <mat-grid-list
     [cols]="getColsForScreenSize()"
-    rowHeight="350"
+    rowHeight="400px"
     gutterSize="10"
   >
     <ng-container *ngFor="let dish of dishes">
