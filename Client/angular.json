@@ -59,7 +59,8 @@
         },
         "serve": {
           "options": {
-            "browserTarget": "your-application-name:build"
+            "browserTarget": "your-application-name:build",
+            "proxyConfig": "src/dev-proxy.conf.json"
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
