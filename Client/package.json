@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config ./src/proxy.conf.json",
+    "dev": "ng serve --proxy-config ./src/dev-proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,
-  "proxy": "http://localhost:8080",
+  "type": "commonjs",
   "dependencies": {
     "@angular/animations": "^16.2.0",
     "@angular/cdk": "^16.2.14",

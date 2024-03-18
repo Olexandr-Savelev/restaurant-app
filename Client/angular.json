@@ -53,23 +53,29 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
-              "fileReplacements": []
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
           "options": {
-            "browserTarget": "your-application-name:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "browserTarget": "your-application-name:build"
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Client:build:production"
+              "browserTarget": "Client:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
-              "browserTarget": "Client:build:development"
+              "browserTarget": "Client:build:development",
+              "proxyConfig": "src/dev-proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
