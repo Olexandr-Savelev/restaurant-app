@@ -10,10 +10,15 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUser(): Observable<User> {
-    return this.http.get<User>(`./api/login`);
+    return this.http.get<User>(
+      `https://restaurant-app-6jzn-1z8pbo8hs-olexandrsavelevs-projects.vercel.app/api/login`
+    );
   }
 
   setUser(user: UserLoginData): Observable<User> {
-    return this.http.post<User>(`./api/login`, user);
+    return this.http.post<User>(
+      `https://restaurant-app-6jzn-1z8pbo8hs-olexandrsavelevs-projects.vercel.app/api/login`,
+      user
+    );
   }
 }

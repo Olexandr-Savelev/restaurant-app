@@ -10,6 +10,8 @@ export class DishService {
   constructor(private http: HttpClient) {}
 
   getDishes(): Observable<Dish[]> {
-    return this.http.get<Dish[]>(`./api/dish`);
+    return this.http.get<Dish[]>(
+      `https://restaurant-app-6jzn-1z8pbo8hs-olexandrsavelevs-projects.vercel.app/api/dish`
+    );
   }
 }
