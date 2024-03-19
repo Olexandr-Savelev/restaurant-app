@@ -1,5 +1,22 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
   <h2 class="mat-h2">Login</h2>
+  <mat-card>
+    <mat-card-content
+      ><p>
+        <strong>ADMIN:</strong>
+        <br />
+        username: admin<br />
+        password: 321
+      </p>
+      <p>
+        <strong>USER:</strong>
+        <br />
+        username: user<br />
+        password: 123
+      </p></mat-card-content
+    >
+  </mat-card>
+
   <mat-form-field appearance="fill">
     <mat-label>Username</mat-label>
     <input
