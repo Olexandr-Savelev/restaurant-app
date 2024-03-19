@@ -1,16 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+
 import { UserLoginData } from 'src/app/models/user.model';
-import { loadUser, setUser } from 'src/app/store/actions/user.actions';
+import { setUser } from 'src/app/store/actions/user.actions';
 import { IAppState } from 'src/app/store/app.interface';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
+
+  styleUrls: ['./login-page.component.scss'],
 })
-export class LoginComponent {
+export class LoginPageComponent {
   constructor(private store: Store<IAppState>) {}
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),

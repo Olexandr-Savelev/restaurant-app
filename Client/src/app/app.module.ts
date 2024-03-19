@@ -9,14 +9,13 @@ import { AppMaterialModule } from './app-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppStoreModule } from './store';
 import { HomeModule } from './modules/home/home.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './modules/login/login.component';
 import { AdminModule } from './modules/admin/admin.module';
 import { CartModule } from './modules/cart/cart.module';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { LoginModule } from './modules/login/login.module';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,7 +26,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     HomeModule,
     AdminModule,
     CartModule,
-    ReactiveFormsModule,
+    LoginModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
