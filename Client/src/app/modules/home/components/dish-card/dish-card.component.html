@@ -5,9 +5,11 @@
       <mat-card-subtitle>{{ dish.price | currency }}</mat-card-subtitle>
     </mat-card-title-group>
   </mat-card-header>
-  <img mat-card-lg-image [src]="dish.image" [alt]="dish.name" />
+  <div class="img-container">
+    <img mat-card-image [src]="dish.image" [alt]="dish.name" />
+  </div>
   <mat-card-content>
-    <p class="truncate">
+    <p class="content-text">
       {{ dish.description }}
     </p>
   </mat-card-content>

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -10,7 +9,6 @@ import { IAppState } from 'src/app/store/app.interface';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent {

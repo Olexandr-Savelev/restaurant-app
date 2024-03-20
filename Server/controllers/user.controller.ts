@@ -14,8 +14,11 @@ class UserController {
 
       const userData = { name: user.name, isAdmin: user.isAdmin };
 
-      req.session.user = userData;
-
+      res.cookie("userData", userData, {
+        httpOnly: false,
+        secure: false,
+      });
+      console.log(123213);
       return res.json(userData);
     } catch (error) {
       let errorMessage = "Unknown error";
@@ -28,7 +31,8 @@ class UserController {
 
   static async GetLoggedUser(req: Request, res: Response) {
     try {
-      return res.json(req.session.user);
+      console.log("SERVER", req.cookies.userData);
+      return res.json(req.cookies.userData);
     } catch (error) {
       let errorMessage = "Unknown error";
       if (error instanceof Error) {
@@ -36,6 +40,13 @@ class UserController {
       }
       res.status(500).json({ error: errorMessage });
     }
+  }
+
+  static async Logout(req: Request, res: Response) {
+    console.log(req.cookies.userData);
+    res.clearCookie("userData");
+    console.log(req.cookies.userData);
+    return res.json("User logged out.");
   }
 }
 

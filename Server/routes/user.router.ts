@@ -4,5 +4,6 @@ const router = express.Router();
 
 router.post("/", UserController.LoginAsUser);
 router.get("/", UserController.GetLoggedUser);
+router.delete("/", UserController.Logout);
 
 export default router;

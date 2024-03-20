@@ -1,15 +1,47 @@
-mat-card {
-    height: stretch;
-    width: stretch;
-    box-sizing: border-box;
-}
+// mat-card {
+//     height: stretch;
+//     width: stretch;
+//     box-sizing: border-box;
+// }
 
-p {
-    height: 80px;
+// p {
+//     height: 80px;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+// }
+
+// mat-card img {
+//     object-fit: cover; /*this makes the image in src fit to the size specified below*/
+//     width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+//     height: 80%;
+// }
+
+.content-text {
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-img {
-    margin: 0 auto;
+.img-container {
+    overflow: hidden;
+    position: relative;
+
+    &:before {
+        content: "";
+        display: block;
+        padding-top: 75%;
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        object-fit: cover;
+        width: 100%;
+        min-height: 100%;
+    }
 }

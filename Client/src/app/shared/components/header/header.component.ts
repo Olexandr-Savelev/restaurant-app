@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { DishCartItem } from 'src/app/models/cart.model';
 import { IAppState } from 'src/app/store/app.interface';
 import { selectCart } from 'src/app/store/selectors/cart.selector';
 import { CartService } from '../../services/cart.service';

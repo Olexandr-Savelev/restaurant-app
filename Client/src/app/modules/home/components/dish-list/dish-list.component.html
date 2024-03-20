@@ -1,9 +1,6 @@
 <div *ngIf="dishes$ | async as dishes">
-  <mat-grid-list
-    [cols]="getColsForScreenSize()"
-    rowHeight="400px"
-    gutterSize="10"
-  >
+  <mat-grid-list [cols]="cols" rowHeight="1:1.6" gutterSize="10">
+    <mat-grid-tile> aASDASDASDSA </mat-grid-tile>
     <ng-container *ngFor="let dish of dishes">
       <mat-grid-tile>
         <app-dish-card

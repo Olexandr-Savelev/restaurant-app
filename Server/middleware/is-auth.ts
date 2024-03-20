@@ -5,13 +5,15 @@ export default function authMiddleware(
   res: Response,
   next: NextFunction
 ) {
-  const user = req?.session?.user;
+  // const user = req?.session?.user;
+
+  const user = req.cookies.userType;
 
   if (!user) {
     return res.json({ loggedIn: false, error: "you are not logged in" });
   }
 
-  if (!user.isAdmin) {
+  if (user !== "admin") {
     return res.json({ loggedIn: true, error: "not authorized" });
   }
 

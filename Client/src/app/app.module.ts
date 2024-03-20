@@ -13,6 +13,7 @@ import { AdminModule } from './modules/admin/admin.module';
 import { CartModule } from './modules/cart/cart.module';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { LoginModule } from './modules/login/login.module';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -28,7 +29,7 @@ import { LoginModule } from './modules/login/login.module';
     CartModule,
     LoginModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
