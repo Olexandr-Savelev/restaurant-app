@@ -16,7 +16,7 @@ import { logout } from 'src/app/store/actions/user.actions';
 export class HeaderComponent implements OnInit, OnDestroy {
   itemsCount: number = 0;
   dishesSubsctiption!: Subscription;
-  user$: Observable<User>;
+  user$: Observable<User | null>;
 
   constructor(
     private store: Store<IAppState>,
@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((cart) => {
         this.itemsCount = this.cartService.getItemsCount(cart);
       });
+    this.user$.subscribe((u) => console.log(u));
   }
 
   onLogout() {

@@ -11,6 +11,7 @@ import {
 } from '../actions/user.actions';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Injectable } from '@angular/core';
+import { User } from 'src/app/models/user.model';
 @Injectable()
 export class UserEffects {
   constructor(private actions$: Actions, private userService: UserService) {}
@@ -20,6 +21,7 @@ export class UserEffects {
       ofType(loadUser),
       mergeMap(() =>
         this.userService.getUser().pipe(
+          tap((user) => console.log('User data:', user)),
           map((user) => loadUserSuccess({ user })),
           catchError((error) => of(loadUserFailure({ message: error.message })))
         )
@@ -27,12 +29,19 @@ export class UserEffects {
     )
   );
 
-  setUser$ = createEffect(() =>
+  login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(login),
       mergeMap((action) =>
         this.userService.login(action.userData).pipe(
-          map((user) => loadUserSuccess({ user })),
+          map((data) => {
+            if ('error' in data) {
+              return loadUserFailure({ message: data.error });
+            } else {
+              console.log('effect', data);
+              return loadUserSuccess({ user: data });
+            }
+          }),
           catchError((error) => of(loadUserFailure({ message: error.message })))
         )
       )

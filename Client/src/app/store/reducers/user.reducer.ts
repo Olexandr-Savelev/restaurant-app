@@ -7,21 +7,28 @@ import {
   logout,
 } from '../actions/user.actions';
 
-export const initialState: User | null = {};
+export interface UserState {
+  user: User | null;
+  error: string | null;
+}
+
+export const initialState: UserState = {
+  user: null,
+  error: null,
+};
 
 export const userReducer = createReducer(
   initialState,
   on(loadUser, (state) => state),
-  on(loadUserSuccess, (_, { user }) => user),
-  on(loadUserFailure, (state, { message }) => {
-    console.error('Failed to load user:', message);
-    return state;
-  }),
-  on(logout, (state) => {
-    return {};
-  })
+  on(loadUserSuccess, (state, { user }) => ({ ...state, user, error: null })),
+  on(loadUserFailure, (state, { message }) => ({
+    ...state,
+    user: null,
+    error: message,
+  })),
+  on(logout, (state) => ({ ...state, user: null, error: null }))
 );
 
-export function UserReducer(state: User | undefined, action: Action): User {
+export function UserReducer(state: UserState, action: Action): UserState {
   return userReducer(state, action);
 }

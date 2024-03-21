@@ -16,7 +16,7 @@ export class UserService {
     });
   }
 
-  login(user: UserLoginData): Observable<User> {
+  login(user: UserLoginData): Observable<User | { error: string }> {
     return this.http.post<User>(`${environment.apiUrl}/api/login`, user, {
       withCredentials: true,
     });

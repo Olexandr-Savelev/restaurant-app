@@ -16,7 +16,7 @@ import { selectUser } from 'src/app/store/selectors/user.selector';
 })
 export class DishListComponent implements OnInit {
   dishes$: Observable<Dish[]>;
-  user$: Observable<User>;
+  user$: Observable<User | null>;
   cols$: Observable<number>;
   cols!: number;
 
