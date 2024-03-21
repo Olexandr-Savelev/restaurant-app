@@ -1,0 +1,22 @@
+.dish-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 600px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.actions {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 959px) {
+    .dish-form {
+        min-width: auto;
+    }
+}

@@ -12,6 +12,10 @@ mat-card {
     overflow: hidden;
 }
 
+.mat-mdc-card-content {
+    height: 50%;
+}
+
 .content-text {
     -webkit-line-clamp: 4;
     display: -webkit-box;
@@ -40,5 +44,11 @@ mat-card {
         object-fit: cover;
         width: 100%;
         min-height: 100%;
+    }
+}
+
+.mdc-card {
+    &__actions {
+        gap: 6px;
     }
 }

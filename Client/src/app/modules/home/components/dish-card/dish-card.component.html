@@ -13,13 +13,11 @@
       {{ dish.description }}
     </p>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button (click)="addToCart()">To Cart</button>
+  <mat-card-actions class="btns">
+    <button mat-button color="primary" (click)="addToCart()">To Cart</button>
+    <ng-container *ngIf="user?.isAdmin">
+      <button mat-stroked-button color="warn">Delete</button>
+      <button mat-stroked-button color="primary">Edit</button></ng-container
+    >
   </mat-card-actions>
-  <mat-card-footer *ngIf="user?.isAdmin">
-    <mat-card-actions>
-      <button mat-button>Delete</button>
-      <button mat-button>Edit</button>
-    </mat-card-actions>
-  </mat-card-footer>
 </mat-card>

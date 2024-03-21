@@ -1,0 +1,71 @@
+<form [formGroup]="dishForm" class="dish-form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+    <mat-error
+      *ngIf="
+        dishForm.get('title')?.invalid &&
+        (dishForm.get('title')?.dirty || dishForm.get('title')?.touched)
+      "
+    >
+      Title is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+    <mat-error
+      *ngIf="
+        dishForm.get('description')?.invalid &&
+        (dishForm.get('description')?.dirty ||
+          dishForm.get('description')?.touched)
+      "
+    >
+      Description is required and should be less than 200 characters
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Price</mat-label>
+    <input matInput formControlName="price" />
+    <mat-error
+      *ngIf="
+        dishForm.get('price')?.invalid &&
+        (dishForm.get('price')?.dirty || dishForm.get('price')?.touched)
+      "
+    >
+      Price is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <input matInput formControlName="category" />
+    <mat-error
+      *ngIf="
+        dishForm.get('category')?.invalid &&
+        (dishForm.get('category')?.dirty || dishForm.get('category')?.touched)
+      "
+    >
+      Category is required and should be less than 20 characters
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Image URL</mat-label>
+    <input matInput formControlName="image" />
+    <mat-error
+      *ngIf="
+        dishForm.get('image')?.invalid &&
+        (dishForm.get('image')?.dirty || dishForm.get('image')?.touched)
+      "
+    >
+      Image URL is required
+    </mat-error>
+  </mat-form-field>
+  <div class="actions">
+    <button mat-raised-button (click)="onClose()">Close</button>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </div>
+</form>
