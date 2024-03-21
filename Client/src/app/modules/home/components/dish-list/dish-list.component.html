@@ -1,5 +1,5 @@
 <div *ngIf="dishes$ | async as dishes">
-  <mat-grid-list [cols]="cols" rowHeight="1:1.6" gutterSize="10">
+  <mat-grid-list [cols]="cols" rowHeight="1:1.2" gutterSize="10">
     <ng-container *ngFor="let dish of dishes">
       <mat-grid-tile>
         <app-dish-card

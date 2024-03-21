@@ -53,7 +53,7 @@ export class DishListComponent implements OnInit {
           if (result.breakpoints[customBreakpoints.extraLarge]) {
             return 4;
           }
-          return 4; // Default value
+          return 4;
         })
       );
     this.cols$.subscribe((value) => {

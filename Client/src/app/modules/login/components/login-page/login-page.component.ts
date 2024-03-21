@@ -3,15 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
-import { User, UserLoginData } from 'src/app/models/user.model';
+import { UserLoginData } from 'src/app/models/user.model';
 import { login } from 'src/app/store/actions/user.actions';
 import { IAppState } from 'src/app/store/app.interface';
-import {
-  selectUser,
-  selectUserSateData,
-} from 'src/app/store/selectors/user.selector';
+import { selectUserSateData } from 'src/app/store/selectors/user.selector';
 
 @Component({
   selector: 'app-login-page',
@@ -19,7 +16,7 @@ import {
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
-  userSubscription!: Subscription;
+  userSubscription?: Subscription;
   constructor(
     private store: Store<IAppState>,
     private snackBar: MatSnackBar,
@@ -33,6 +30,14 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   onSubmit() {
+    Object.values(this.loginForm.controls).forEach((control) => {
+      control.markAsDirty();
+    });
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     const userData: UserLoginData = {
       name: this.loginForm.value.username!,
       password: this.loginForm.value.password!,
@@ -62,6 +67,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 }
