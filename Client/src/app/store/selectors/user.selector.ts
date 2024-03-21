@@ -4,6 +4,11 @@ import { UserState } from '../reducers/user.reducer';
 
 export const selectUserState = (state: IAppState) => state.user;
 
+export const selectUserSateData = createSelector(
+  selectUserState,
+  (userState: UserState) => userState
+);
+
 export const selectUserError = createSelector(
   selectUserState,
   ({ error }: UserState) => error

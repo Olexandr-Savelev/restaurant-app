@@ -14,9 +14,10 @@ import { CartModule } from './modules/cart/cart.module';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { LoginModule } from './modules/login/login.module';
 import { CookieService } from 'ngx-cookie-service';
+import { SnackbarComponent } from './shared/components/snackbar/snackbar.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, SnackbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

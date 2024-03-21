@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((cart) => {
         this.itemsCount = this.cartService.getItemsCount(cart);
       });
-    this.user$.subscribe((u) => console.log(u));
   }
 
   onLogout() {

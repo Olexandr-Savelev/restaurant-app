@@ -5,7 +5,7 @@ import { Dish } from 'src/app/models/dish.model';
 import { loadDishes } from 'src/app/store/actions/dish.actions';
 import { IAppState } from 'src/app/store/app.interface';
 import { selectAllDishes } from 'src/app/store/selectors/dish.selector';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { User } from 'src/app/models/user.model';
 import { selectUser } from 'src/app/store/selectors/user.selector';
 
