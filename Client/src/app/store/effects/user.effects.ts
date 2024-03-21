@@ -6,7 +6,8 @@ import {
   loadUser,
   loadUserFailure,
   loadUserSuccess,
-  setUser,
+  login,
+  logout,
 } from '../actions/user.actions';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Injectable } from '@angular/core';
@@ -28,10 +29,22 @@ export class UserEffects {
 
   setUser$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(setUser),
+      ofType(login),
       mergeMap((action) =>
-        this.userService.setUser(action.userData).pipe(
+        this.userService.login(action.userData).pipe(
           map((user) => loadUserSuccess({ user })),
+          catchError((error) => of(loadUserFailure({ message: error.message })))
+        )
+      )
+    )
+  );
+
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(logout),
+      mergeMap(() =>
+        this.userService.logout().pipe(
+          map(() => loadUser()),
           catchError((error) => of(loadUserFailure({ message: error.message })))
         )
       )

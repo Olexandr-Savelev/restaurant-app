@@ -4,6 +4,7 @@ import {
   loadUser,
   loadUserFailure,
   loadUserSuccess,
+  logout,
 } from '../actions/user.actions';
 
 export const initialState: User | null = {};
@@ -15,6 +16,9 @@ export const userReducer = createReducer(
   on(loadUserFailure, (state, { message }) => {
     console.error('Failed to load user:', message);
     return state;
+  }),
+  on(logout, (state) => {
+    return {};
   })
 );
 

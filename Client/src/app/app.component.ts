@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IAppState } from './store/app.interface';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { User } from './models/user.model';
-import { selectUser } from './store/selectors/user.selector';
+import { Store } from '@ngrx/store';
+
 import { loadUser } from './store/actions/user.actions';
 
 @Component({
@@ -13,14 +11,10 @@ import { loadUser } from './store/actions/user.actions';
 })
 export class AppComponent implements OnInit {
   title = 'Restaurant';
-  user$: Observable<User>;
 
-  constructor(private store: Store<IAppState>) {
-    this.user$ = this.store.pipe(select(selectUser));
-  }
+  constructor(private store: Store<IAppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadUser());
-    this.user$.subscribe((user) => console.log(user));
   }
 }

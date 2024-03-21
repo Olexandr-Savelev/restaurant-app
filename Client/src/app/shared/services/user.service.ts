@@ -16,8 +16,14 @@ export class UserService {
     });
   }
 
-  setUser(user: UserLoginData): Observable<User> {
+  login(user: UserLoginData): Observable<User> {
     return this.http.post<User>(`${environment.apiUrl}/api/login`, user, {
+      withCredentials: true,
+    });
+  }
+
+  logout(): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/api/login`, {
       withCredentials: true,
     });
   }

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import { UserLoginData } from 'src/app/models/user.model';
-import { setUser } from 'src/app/store/actions/user.actions';
+import { login } from 'src/app/store/actions/user.actions';
 import { IAppState } from 'src/app/store/app.interface';
 
 @Component({
@@ -24,6 +24,6 @@ export class LoginPageComponent {
       password: this.loginForm.value.password!,
     };
 
-    this.store.dispatch(setUser({ userData }));
+    this.store.dispatch(login({ userData }));
   }
 }

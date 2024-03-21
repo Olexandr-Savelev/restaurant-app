@@ -18,7 +18,6 @@ class UserController {
         httpOnly: false,
         secure: false,
       });
-      console.log(123213);
       return res.json(userData);
     } catch (error) {
       let errorMessage = "Unknown error";

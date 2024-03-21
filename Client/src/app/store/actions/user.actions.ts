@@ -13,7 +13,9 @@ export const loadUserFailure = createAction(
   props<{ message: string }>()
 );
 
-export const setUser = createAction(
+export const login = createAction(
   '[User] Set User',
   props<{ userData: UserLoginData }>()
 );
+
+export const logout = createAction('[User] Logout');
