@@ -25,7 +25,7 @@ export class HomePageComponent {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      action: 'add',
+      action: 'Add',
     };
 
     this.dialog.open(DishDialogComponent, dialogConfig);

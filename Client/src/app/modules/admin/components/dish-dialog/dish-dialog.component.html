@@ -1,5 +1,23 @@
-<h2 mat-dialog-title>Add new dish</h2>
+<h2 mat-dialog-title>{{ dialogData.action }}</h2>
 
-<mat-dialog-content>
-  <app-dish-form (close)="onClose()" [data]="dialogData"></app-dish-form>
-</mat-dialog-content>
+<ng-container *ngIf="dialogData.action === 'Delete'; else dishFrom">
+  <mat-dialog-content> Would you like to delete?</mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close [mat-dialog-close]="'cancel'">
+      No
+    </button>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      [mat-dialog-close]="'confirm'"
+    >
+      Yes
+    </button>
+  </mat-dialog-actions>
+</ng-container>
+<ng-template #dishFrom>
+  <mat-dialog-content>
+    <app-dish-form (close)="onClose()" [data]="dialogData"></app-dish-form>
+  </mat-dialog-content>
+</ng-template>

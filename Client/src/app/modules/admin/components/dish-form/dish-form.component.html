@@ -1,11 +1,11 @@
 <form [formGroup]="dishForm" class="dish-form" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
-    <input matInput formControlName="title" />
+    <input matInput formControlName="name" />
     <mat-error
       *ngIf="
-        dishForm.get('title')?.invalid &&
-        (dishForm.get('title')?.dirty || dishForm.get('title')?.touched)
+        dishForm.get('name')?.invalid &&
+        (dishForm.get('name')?.dirty || dishForm.get('name')?.touched)
       "
     >
       Title is required
@@ -22,13 +22,13 @@
           dishForm.get('description')?.touched)
       "
     >
-      Description is required and should be less than 200 characters
+      Description is required and should be less than 350 characters
     </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Price</mat-label>
-    <input matInput formControlName="price" />
+    <input matInput formControlName="price" type="number" />
     <mat-error
       *ngIf="
         dishForm.get('price')?.invalid &&
