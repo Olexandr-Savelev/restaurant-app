@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DishDialogData } from '../dish-dialog/dish-dialog.component';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.interface';
-import { addDish } from 'src/app/store/actions/dish.actions';
+import { addDish, updateDish } from 'src/app/store/actions/dish.actions';
 import { DishData } from 'src/app/models/dish.model';
 
 @Component({
@@ -64,6 +64,12 @@ export class DishFormComponent implements OnInit {
 
     if (this.data.action === 'Add') {
       this.store.dispatch(addDish({ dishData }));
+    }
+
+    if (this.data.action === 'Edit') {
+      this.store.dispatch(
+        updateDish({ dish: { _id: this.data.dish!._id, ...dishData } })
+      );
     }
     this.close.emit();
   }

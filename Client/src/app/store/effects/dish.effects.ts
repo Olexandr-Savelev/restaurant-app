@@ -13,6 +13,9 @@ import {
   deleteDish,
   deleteDishSuccess,
   deleteDishFailure,
+  updateDish,
+  updateDishFailure,
+  updateDishSuccess,
 } from '../actions/dish.actions';
 import { DishService } from 'src/app/shared/services/dish.service';
 
@@ -54,6 +57,20 @@ export class DishEffects {
           map((dish) => deleteDishSuccess({ dish })),
           catchError((error) =>
             of(deleteDishFailure({ message: error.message }))
+          )
+        )
+      )
+    )
+  );
+
+  updateDish$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateDish),
+      switchMap((action) =>
+        this.dishService.updateDish(action.dish).pipe(
+          map((dish) => updateDishSuccess({ dish })),
+          catchError((error) =>
+            of(updateDishFailure({ message: error.message }))
           )
         )
       )

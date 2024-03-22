@@ -38,3 +38,16 @@ export const deleteDishFailure = createAction(
   '[Dishes] Delete Dish Failure',
   props<{ message: string }>()
 );
+
+export const updateDish = createAction(
+  '[Dishes] Update Dish',
+  props<{ dish: Dish }>()
+);
+export const updateDishSuccess = createAction(
+  '[Dishes] Update Dish Success',
+  props<{ dish: Dish }>()
+);
+export const updateDishFailure = createAction(
+  '[Dishes] Update Dish Failure',
+  props<{ message: string }>()
+);

@@ -21,4 +21,11 @@ export class DishService {
   deleteDish(id: string): Observable<Dish> {
     return this.http.delete<Dish>(`${environment.apiUrl}/api/dish/${id}`);
   }
+
+  updateDish(dish: Dish): Observable<Dish> {
+    return this.http.put<Dish>(
+      `${environment.apiUrl}/api/dish/${dish._id}`,
+      dish
+    );
+  }
 }

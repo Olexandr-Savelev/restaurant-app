@@ -9,6 +9,9 @@ import {
   loadDishesFailure,
   loadDishesSuccess,
   deleteDishSuccess,
+  updateDish,
+  updateDishSuccess,
+  updateDishFailure,
 } from '../actions/dish.actions';
 
 export const initialState: Dish[] = [];
@@ -35,6 +38,24 @@ export const dishReducer = createReducer(
     state.filter((d) => dish._id !== d._id)
   ),
   on(deleteDishFailure, (state, { message }) => {
+    console.error('Failed to delete dish:', message);
+    return state;
+  }),
+
+  on(updateDish, (state) => state),
+  on(updateDishSuccess, (state, { dish }) => {
+    const index = state.findIndex((d) => dish._id === d._id);
+
+    if (index !== -1) {
+      const updatedDish = { ...state[index], ...dish };
+      const newState = [...state];
+      newState[index] = updatedDish;
+      return newState;
+    }
+
+    return state;
+  }),
+  on(updateDishFailure, (state, { message }) => {
     console.error('Failed to delete dish:', message);
     return state;
   })
