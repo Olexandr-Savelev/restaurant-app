@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [],
   imports: [
@@ -28,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTooltipModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatToolbarModule,
@@ -43,6 +45,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTooltipModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class AppMaterialModule {}
