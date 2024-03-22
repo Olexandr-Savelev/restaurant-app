@@ -14,7 +14,10 @@ const app: Express = express();
 const port = process.env.PORT || 8080;
 
 const corsOptions = {
-  origin: ["http://localhost:4200"],
+  origin: [
+    "http://localhost:4200",
+    "https://restaurant-app-mauve-ten.vercel.app",
+  ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
