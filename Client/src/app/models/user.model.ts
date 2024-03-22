@@ -1,6 +1,6 @@
 export interface User {
-  isAdmin?: boolean;
-  name?: string;
+  isAdmin: boolean;
+  name: string;
 }
 
 export interface UserLoginData {

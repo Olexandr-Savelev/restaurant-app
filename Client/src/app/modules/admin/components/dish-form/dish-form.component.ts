@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DishDialogData } from '../dish-dialog/dish-dialog.component';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store/app.interface';
+import { addDish } from 'src/app/store/actions/dish.actions';
+import { Dish } from 'src/app/models/dish.model';
 
 @Component({
   selector: 'app-dish-form',
@@ -25,6 +29,8 @@ export class DishFormComponent implements OnInit {
     image: new FormControl('', Validators.required),
   });
 
+  constructor(private store: Store<IAppState>) {}
+
   ngOnInit(): void {
     if (this.data.dish) {
       const { name, description, price, category, image } = this.data.dish;
@@ -43,6 +49,22 @@ export class DishFormComponent implements OnInit {
     Object.values(this.dishForm.controls).forEach((control) =>
       control.markAsDirty()
     );
+
+    if (this.dishForm.invalid) {
+      return;
+    }
+
+    const dishData: Dish = {
+      name: this.dishForm.value.name!,
+      description: this.dishForm.value.description!,
+      price: this.dishForm.value.price!,
+      category: this.dishForm.value.category!,
+      image: this.dishForm.value.image!,
+    };
+
+    if (this.data.action === 'Add') {
+      this.store.dispatch(addDish({ dishData }));
+    }
   }
 
   onClose() {

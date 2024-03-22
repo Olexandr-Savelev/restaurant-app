@@ -13,4 +13,8 @@ export class DishService {
   getDishes(): Observable<Dish[]> {
     return this.http.get<Dish[]>(`${environment.apiUrl}/api/dish`);
   }
+
+  addDish(dish: Dish): Observable<Dish> {
+    return this.http.post<Dish>(`${environment.apiUrl}/api/dish`, dish);
+  }
 }
