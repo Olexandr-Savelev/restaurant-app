@@ -1,4 +1,4 @@
-<div *ngIf="dishes$ | async as dishes; else loadingSpinner">
+<div *ngIf="dishes$ | async as dishes">
   <mat-grid-list [cols]="cols" rowHeight="1:1.2" gutterSize="10">
     <ng-container *ngFor="let dish of dishes">
       <mat-grid-tile>
@@ -10,7 +10,7 @@
       </mat-grid-tile>
     </ng-container>
   </mat-grid-list>
+  <div *ngIf="dishes.length === 0" class="spinner">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
 </div>
-<ng-template class="spinner" #loadingSpinner>
-  <mat-spinner></mat-spinner>
-</ng-template>
