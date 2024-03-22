@@ -4,7 +4,7 @@ import { DishDialogData } from '../dish-dialog/dish-dialog.component';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.interface';
 import { addDish } from 'src/app/store/actions/dish.actions';
-import { Dish } from 'src/app/models/dish.model';
+import { DishData } from 'src/app/models/dish.model';
 
 @Component({
   selector: 'app-dish-form',
@@ -54,7 +54,7 @@ export class DishFormComponent implements OnInit {
       return;
     }
 
-    const dishData: Dish = {
+    const dishData: DishData = {
       name: this.dishForm.value.name!,
       description: this.dishForm.value.description!,
       price: this.dishForm.value.price!,
@@ -65,6 +65,7 @@ export class DishFormComponent implements OnInit {
     if (this.data.action === 'Add') {
       this.store.dispatch(addDish({ dishData }));
     }
+    this.close.emit();
   }
 
   onClose() {

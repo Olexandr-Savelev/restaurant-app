@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Dish } from 'src/app/models/dish.model';
+import { Dish, DishData } from 'src/app/models/dish.model';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -14,7 +14,11 @@ export class DishService {
     return this.http.get<Dish[]>(`${environment.apiUrl}/api/dish`);
   }
 
-  addDish(dish: Dish): Observable<Dish> {
+  addDish(dish: DishData): Observable<Dish> {
     return this.http.post<Dish>(`${environment.apiUrl}/api/dish`, dish);
+  }
+
+  deleteDish(id: string): Observable<Dish> {
+    return this.http.delete<Dish>(`${environment.apiUrl}/api/dish/${id}`);
   }
 }

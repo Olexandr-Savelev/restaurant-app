@@ -3,7 +3,12 @@
 <ng-container *ngIf="dialogData.action === 'Delete'; else dishFrom">
   <mat-dialog-content> Would you like to delete?</mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close [mat-dialog-close]="'cancel'">
+    <button
+      mat-button
+      mat-dialog-close
+      [mat-dialog-close]="'cancel'"
+      type="button"
+    >
       No
     </button>
     <button
@@ -11,6 +16,7 @@
       mat-dialog-close
       cdkFocusInitial
       [mat-dialog-close]="'confirm'"
+      type="button"
     >
       Yes
     </button>

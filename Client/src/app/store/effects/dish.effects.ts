@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import {
   loadDishes,
@@ -10,9 +10,11 @@ import {
   addDish,
   addDishSuccess,
   addDishFailure,
+  deleteDish,
+  deleteDishSuccess,
+  deleteDishFailure,
 } from '../actions/dish.actions';
 import { DishService } from 'src/app/shared/services/dish.service';
-import { Action } from '@ngrx/store';
 
 @Injectable()
 export class DishEffects {
@@ -32,13 +34,27 @@ export class DishEffects {
     )
   );
 
-  addDish$: any = createEffect(() =>
+  addDish$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addDish),
       switchMap((action) =>
         this.dishService.addDish(action.dishData).pipe(
           map((dish) => addDishSuccess({ dish })),
           catchError((error) => of(addDishFailure({ message: error.message })))
+        )
+      )
+    )
+  );
+
+  deleteDish$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteDish),
+      switchMap((action) =>
+        this.dishService.deleteDish(action.id).pipe(
+          map((dish) => deleteDishSuccess({ dish })),
+          catchError((error) =>
+            of(deleteDishFailure({ message: error.message }))
+          )
         )
       )
     )

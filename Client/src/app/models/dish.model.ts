@@ -1,5 +1,7 @@
-export interface Dish {
-  _id?: string;
+export interface Dish extends DishData {
+  _id: string;
+}
+export interface DishData {
   name: string;
   description: string;
   price: number;
