@@ -37,7 +37,6 @@ export class UserEffects {
             if ('error' in data) {
               return loadUserFailure({ message: data.error });
             } else {
-              console.log('effect', data);
               return loadUserSuccess({ user: data });
             }
           }),

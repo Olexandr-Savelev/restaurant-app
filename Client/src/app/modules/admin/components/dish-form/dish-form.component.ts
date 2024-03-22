@@ -21,7 +21,7 @@ export class DishFormComponent implements OnInit {
       Validators.required,
       Validators.maxLength(350),
     ]),
-    price: new FormControl(0, Validators.required),
+    price: new FormControl(0, [Validators.required, Validators.min(0)]),
     category: new FormControl('', [
       Validators.required,
       Validators.maxLength(20),
