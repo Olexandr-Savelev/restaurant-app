@@ -42,7 +42,9 @@ export class DishEffects {
       ofType(addDish),
       switchMap((action) =>
         this.dishService.addDish(action.dishData).pipe(
-          map((dish) => addDishSuccess({ dish })),
+          map((dish) =>
+            addDishSuccess({ dish, message: `${dish.name} added to menu.` })
+          ),
           catchError((error) => of(addDishFailure({ message: error.message })))
         )
       )
@@ -54,7 +56,12 @@ export class DishEffects {
       ofType(deleteDish),
       switchMap((action) =>
         this.dishService.deleteDish(action.id).pipe(
-          map((dish) => deleteDishSuccess({ dish })),
+          map((dish) =>
+            deleteDishSuccess({
+              dish,
+              message: `${dish.name} deleted from menu.`,
+            })
+          ),
           catchError((error) =>
             of(deleteDishFailure({ message: error.message }))
           )
@@ -68,7 +75,9 @@ export class DishEffects {
       ofType(updateDish),
       switchMap((action) =>
         this.dishService.updateDish(action.dish).pipe(
-          map((dish) => updateDishSuccess({ dish })),
+          map((dish) =>
+            updateDishSuccess({ dish, message: `${dish.name} edited.` })
+          ),
           catchError((error) =>
             of(updateDishFailure({ message: error.message }))
           )

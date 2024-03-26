@@ -3,7 +3,7 @@ import { DishCartItem } from 'src/app/models/cart.model';
 
 export const addToCart = createAction(
   '[Cart] Add to Cart',
-  props<{ dish: DishCartItem }>()
+  props<{ dish: DishCartItem; message: string }>()
 );
 
 export const removeFromCart = createAction(

@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { DishCartItem } from 'src/app/models/cart.model';
@@ -16,23 +15,21 @@ import { IAppState } from 'src/app/store/app.interface';
   templateUrl: './dish-card.component.html',
   styleUrls: ['./dish-card.component.scss'],
 })
-export class DishCardComponent implements OnInit, OnDestroy {
+export class DishCardComponent implements OnDestroy {
   @Input() dish!: Dish;
   @Input() user!: User | null;
   dialogRefSubscription?: Subscription;
 
-  constructor(
-    private store: Store<IAppState>,
-    private dialog: MatDialog,
-    private snackbar: MatSnackBar
-  ) {}
-
-  ngOnInit(): void {}
+  constructor(private store: Store<IAppState>, private dialog: MatDialog) {}
 
   addToCart() {
     const dishCartItem: DishCartItem = { ...this.dish, quantity: 1 };
-    this.store.dispatch(addToCart({ dish: dishCartItem }));
-    this.showSnackbar(`${this.dish.name} added to cart.`);
+    this.store.dispatch(
+      addToCart({
+        dish: dishCartItem,
+        message: `${this.dish.name} added to cart`,
+      })
+    );
   }
 
   onDelete() {
@@ -48,8 +45,6 @@ export class DishCardComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((res) => {
       if (res === 'confirm' && this.dish._id) {
         this.store.dispatch(deleteDish({ id: this.dish._id }));
-        //TODO: fire this function on successfully dish delete
-        this.showSnackbar(`${this.dish.name} deleted.`);
       }
     });
   }
@@ -64,12 +59,6 @@ export class DishCardComponent implements OnInit, OnDestroy {
     };
 
     this.dialog.open(DishDialogComponent, dialogConfig);
-  }
-
-  showSnackbar(message: string) {
-    this.snackbar.open(message, 'Ok', {
-      duration: 3000,
-    });
   }
 
   ngOnDestroy(): void {

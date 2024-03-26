@@ -19,7 +19,7 @@ export const addDish = createAction(
 );
 export const addDishSuccess = createAction(
   '[Dishes] Add Dish Success',
-  props<{ dish: Dish }>()
+  props<{ dish: Dish; message: string }>()
 );
 export const addDishFailure = createAction(
   '[Dishes] Add Dish Failure',
@@ -32,7 +32,7 @@ export const deleteDish = createAction(
 );
 export const deleteDishSuccess = createAction(
   '[Dishes] Delete Dish Success',
-  props<{ dish: Dish }>()
+  props<{ dish: Dish; message: string }>()
 );
 export const deleteDishFailure = createAction(
   '[Dishes] Delete Dish Failure',
@@ -45,7 +45,7 @@ export const updateDish = createAction(
 );
 export const updateDishSuccess = createAction(
   '[Dishes] Update Dish Success',
-  props<{ dish: Dish }>()
+  props<{ dish: Dish; message: string }>()
 );
 export const updateDishFailure = createAction(
   '[Dishes] Update Dish Failure',
