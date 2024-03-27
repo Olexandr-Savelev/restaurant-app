@@ -10,12 +10,13 @@ import {
   updateDishSuccess,
 } from '../actions/dish.actions';
 import { tap } from 'rxjs';
-import { addToCart } from '../actions/cart.actions';
+import { addToCart, removeFromCart } from '../actions/cart.actions';
 
 @Injectable()
 export class NotificationEffects {
   private readonly _actionsForShowingMessage = [
     addToCart,
+    removeFromCart,
     addDishSuccess,
     addDishFailure,
     deleteDishSuccess,
