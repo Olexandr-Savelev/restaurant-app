@@ -1,13 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { DishCartItem } from 'src/app/models/cart.model';
 import { Dish } from 'src/app/models/dish.model';
 import { User } from 'src/app/models/user.model';
 import { DishDialogComponent } from 'src/app/modules/admin/components/dish-dialog/dish-dialog.component';
 import { CartService } from 'src/app/shared/services/cart.service';
-import { addToCart } from 'src/app/store/actions/cart.actions';
 import { deleteDish } from 'src/app/store/actions/dish.actions';
 import { IAppState } from 'src/app/store/app.interface';
 

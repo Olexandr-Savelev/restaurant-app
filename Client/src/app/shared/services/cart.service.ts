@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Cart, DishCartItem } from 'src/app/models/cart.model';
 import { Dish } from 'src/app/models/dish.model';
-import { addToCart, removeFromCart } from 'src/app/store/actions/cart.actions';
+import {
+  addToCart,
+  removeFromCart,
+  updateQuantity,
+} from 'src/app/store/actions/cart.actions';
 import { IAppState } from 'src/app/store/app.interface';
 
 @Injectable({
@@ -21,7 +25,7 @@ export class CartService {
     return cart.reduce((total, dish) => total + dish.quantity * dish.price, 0);
   }
 
-  addToCart(dish: Dish) {
+  addToCart(dish: Dish): void {
     const dishCartItem: DishCartItem = { ...dish, quantity: 1 };
     this.store.dispatch(
       addToCart({
@@ -31,12 +35,16 @@ export class CartService {
     );
   }
 
-  removeFromCart(dish: Dish) {
+  removeFromCart(dish: Dish): void {
     this.store.dispatch(
       removeFromCart({
         id: dish._id,
         message: `${dish.name} removed from cart.`,
       })
     );
+  }
+
+  updateQuantity(id: string, num: number) {
+    this.store.dispatch(updateQuantity({ id, num }));
   }
 }

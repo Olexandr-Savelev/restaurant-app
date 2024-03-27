@@ -33,7 +33,11 @@ export class CartPageComponent {
     return this.cartService.getTotalPrice(cart);
   }
 
-  removeItem(dish: Dish) {
+  removeItem(dish: Dish): void {
     this.cartService.removeFromCart(dish);
+  }
+
+  updateQuantity(dish: Dish, num: number): void {
+    this.cartService.updateQuantity(dish._id, num);
   }
 }
