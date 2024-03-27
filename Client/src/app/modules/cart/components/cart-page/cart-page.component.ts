@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Cart } from 'src/app/models/cart.model';
 import { Dish } from 'src/app/models/dish.model';
 import { CartService } from 'src/app/shared/services/cart.service';
-import { removeFromCart } from 'src/app/store/actions/cart.actions';
 import { IAppState } from 'src/app/store/app.interface';
 import { selectCart } from 'src/app/store/selectors/cart.selector';
 
@@ -35,11 +34,6 @@ export class CartPageComponent {
   }
 
   removeItem(dish: Dish) {
-    this.store.dispatch(
-      removeFromCart({
-        id: dish._id,
-        message: `${dish.name} removed from cart.`,
-      })
-    );
+    this.cartService.removeFromCart(dish);
   }
 }

@@ -6,6 +6,7 @@ import { DishCartItem } from 'src/app/models/cart.model';
 import { Dish } from 'src/app/models/dish.model';
 import { User } from 'src/app/models/user.model';
 import { DishDialogComponent } from 'src/app/modules/admin/components/dish-dialog/dish-dialog.component';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { addToCart } from 'src/app/store/actions/cart.actions';
 import { deleteDish } from 'src/app/store/actions/dish.actions';
 import { IAppState } from 'src/app/store/app.interface';
@@ -20,16 +21,14 @@ export class DishCardComponent implements OnDestroy {
   @Input() user!: User | null;
   dialogRefSubscription?: Subscription;
 
-  constructor(private store: Store<IAppState>, private dialog: MatDialog) {}
+  constructor(
+    private store: Store<IAppState>,
+    private dialog: MatDialog,
+    private cartService: CartService
+  ) {}
 
   addToCart() {
-    const dishCartItem: DishCartItem = { ...this.dish, quantity: 1 };
-    this.store.dispatch(
-      addToCart({
-        dish: dishCartItem,
-        message: `${this.dish.name} added to cart`,
-      })
-    );
+    this.cartService.addToCart(this.dish);
   }
 
   onDelete() {
