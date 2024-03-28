@@ -16,7 +16,8 @@ class UserController {
 
       res.cookie("userData", userData, {
         httpOnly: false,
-        secure: false,
+        secure: true,
+        sameSite: "none",
       });
       return res.json(userData);
     } catch (error) {
@@ -41,9 +42,7 @@ class UserController {
   }
 
   static async Logout(req: Request, res: Response) {
-    console.log(req.cookies.userData);
     res.clearCookie("userData");
-    console.log(req.cookies.userData);
     return res.json("User logged out.");
   }
 }
