@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { IAppState } from 'src/app/store/app.interface';
 import { selectCart } from 'src/app/store/selectors/cart.selector';
 import { CartService } from '../../services/cart.service';
@@ -15,17 +15,21 @@ import { logout } from 'src/app/store/actions/user.actions';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   itemsCount: number = 0;
+  user: User | null = null;
   dishesSubsctiption!: Subscription;
-  user$: Observable<User | null>;
+  userSubsctiption!: Subscription;
 
   constructor(
     private store: Store<IAppState>,
     private cartService: CartService
-  ) {
-    this.user$ = this.store.pipe(select(selectUser));
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.userSubsctiption = this.store
+      .pipe(select(selectUser))
+      .subscribe((user) => {
+        this.user = user;
+      });
     this.dishesSubsctiption = this.store
       .pipe(select(selectCart))
       .subscribe((cart) => {
@@ -39,5 +43,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.dishesSubsctiption.unsubscribe();
+    this.userSubsctiption.unsubscribe();
   }
 }

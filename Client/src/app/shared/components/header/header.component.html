@@ -1,7 +1,27 @@
 <mat-toolbar color="primary">
   <span>My Restaurant</span>
   <span class="spacer"></span>
-  <div>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <ng-container *ngIf="user?.isAdmin">
+      <button mat-menu-item routerLink="/admin">Admin</button>
+    </ng-container>
+    <button mat-menu-item routerLink="/">Menu</button>
+    <button mat-menu-item routerLink="/cart">Cart</button>
+    <ng-container *ngIf="!user">
+      <button mat-menu-item routerLink="/login">Login</button>
+    </ng-container>
+    <ng-container *ngIf="user">
+      <button mat-menu-item (click)="onLogout()">Logout</button>
+    </ng-container>
+  </mat-menu>
+
+  <div class="nav">
+    <ng-container *ngIf="user?.isAdmin">
+      <button mat-button routerLink="/admin">Admin</button>
+    </ng-container>
     <button mat-button routerLink="/">Menu</button>
     <button
       mat-button
@@ -11,11 +31,11 @@
     >
       Cart
     </button>
-    <ng-container *ngIf="user$ | async as user; else login">
-      <button mat-button (click)="onLogout()">Logout</button>
-    </ng-container>
-    <ng-template #login>
+    <ng-container *ngIf="!user; else logout">
       <button mat-button routerLink="/login">Login</button>
+    </ng-container>
+    <ng-template #logout>
+      <button mat-button (click)="onLogout()">Logout</button>
     </ng-template>
   </div>
 </mat-toolbar>

@@ -30,7 +30,6 @@ class UserController {
 
   static async GetLoggedUser(req: Request, res: Response) {
     try {
-      console.log("SERVER", req.cookies.userData);
       return res.json(req.cookies.userData);
     } catch (error) {
       let errorMessage = "Unknown error";
