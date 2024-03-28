@@ -6,10 +6,10 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, map } from 'rxjs';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../services/user.service';
 import { inject } from '@angular/core';
 
-export const AuthGuard: CanActivateFn = (
+export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ):
