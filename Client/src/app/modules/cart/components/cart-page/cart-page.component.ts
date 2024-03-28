@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Cart } from 'src/app/models/cart.model';
@@ -12,8 +12,8 @@ import { selectCart } from 'src/app/store/selectors/cart.selector';
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.scss'],
 })
-export class CartPageComponent {
-  cart$: Observable<Cart>;
+export class CartPageComponent implements OnInit {
+  cart$?: Observable<Cart>;
   columnsToDisplay: string[] = [
     'name',
     'quantity',
@@ -25,7 +25,9 @@ export class CartPageComponent {
   constructor(
     private store: Store<IAppState>,
     private cartService: CartService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.cart$ = this.store.pipe(select(selectCart));
   }
 

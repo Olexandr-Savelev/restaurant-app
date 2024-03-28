@@ -1,36 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Router,
-  RouterStateSnapshot,
-} from '@angular/router';
-import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { Observable, map } from 'rxjs';
 import { User, UserLoginData } from 'src/app/models/user.model';
+import { IAppState } from 'src/app/store/app.interface';
+import { selectUser } from 'src/app/store/selectors/user.selector';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private store: Store<IAppState>) {}
 
-  // canActivate(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot
-  // ): boolean {
-  //   let isAuthenticated: boolean = false;
-  //   const val = this.getUser().subscribe((user) => {
-  //     return user.isAdmin;
-  //   });
-  //   console.log(val);
-  //   if (isAuthenticated) {
-  //     return true;
-  //   } else {
-  //     this.router.navigate(['/login']);
-  //     return false;
-  //   }
-  // }
+  isAuthorized(): Observable<boolean> {
+    return this.store.pipe(
+      select(selectUser),
+      map((user: User | null) => {
+        if (user && user.isAdmin) {
+          return true;
+        }
+        return false;
+      })
+    );
+  }
 
   getUser(): Observable<User> {
     return this.http.get<User>(`${environment.apiUrl}/api/login`, {

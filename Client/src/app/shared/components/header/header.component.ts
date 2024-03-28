@@ -7,6 +7,7 @@ import { CartService } from '../../services/cart.service';
 import { User } from 'src/app/models/user.model';
 import { selectUser } from 'src/app/store/selectors/user.selector';
 import { logout } from 'src/app/store/actions/user.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<IAppState>,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.store.dispatch(logout());
+    this.router.navigate(['/']);
   }
 
   ngOnDestroy(): void {

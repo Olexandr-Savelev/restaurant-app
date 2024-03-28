@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { Dish } from 'src/app/models/dish.model';
 import { loadDishes } from 'src/app/store/actions/dish.actions';
 import { IAppState } from 'src/app/store/app.interface';
@@ -14,18 +14,17 @@ import { selectUser } from 'src/app/store/selectors/user.selector';
   templateUrl: './dish-list.component.html',
   styleUrls: ['./dish-list.component.scss'],
 })
-export class DishListComponent implements OnInit {
-  dishes$: Observable<Dish[]>;
-  user$: Observable<User | null>;
+export class DishListComponent implements OnInit, OnDestroy {
+  dishes$?: Observable<Dish[]>;
+  user$?: Observable<User | null>;
   cols$: Observable<number>;
   cols!: number;
+  colsSubscription?: Subscription;
 
   constructor(
     private store: Store<IAppState>,
     private breakpointObserver: BreakpointObserver
   ) {
-    this.dishes$ = this.store.pipe(select(selectAllDishes));
-    this.user$ = this.store.pipe(select(selectUser));
     const customBreakpoints = {
       small: '(max-width: 599px)',
       medium: '(min-width: 600px) and (max-width: 959px)',
@@ -56,12 +55,20 @@ export class DishListComponent implements OnInit {
           return 4;
         })
       );
-    this.cols$.subscribe((value) => {
+  }
+
+  ngOnInit(): void {
+    this.dishes$ = this.store.pipe(select(selectAllDishes));
+    this.user$ = this.store.pipe(select(selectUser));
+    this.store.dispatch(loadDishes());
+    this.colsSubscription = this.cols$.subscribe((value) => {
       this.cols = value;
     });
   }
 
-  ngOnInit(): void {
-    this.store.dispatch(loadDishes());
+  ngOnDestroy(): void {
+    if (this.colsSubscription) {
+      this.colsSubscription.unsubscribe();
+    }
   }
 }
