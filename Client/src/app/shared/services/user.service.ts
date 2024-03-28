@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class UserService {
   constructor(private http: HttpClient, private store: Store<IAppState>) {}
 
-  isAuthorized(): Observable<boolean> {
+  isAuthenticated(): Observable<boolean> {
     return this.store.pipe(
       select(selectUser),
       map((user: User | null) => {
