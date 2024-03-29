@@ -1,23 +1,30 @@
 <mat-toolbar color="primary">
   <span>My Restaurant</span>
   <span class="spacer"></span>
-  <button mat-button [matMenuTriggerFor]="menu">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <ng-container *ngIf="user?.isAdmin">
-      <button mat-menu-item routerLink="/admin">Admin</button>
-    </ng-container>
-    <button mat-menu-item routerLink="/">Menu</button>
-    <button mat-menu-item routerLink="/cart">Cart</button>
-    <ng-container *ngIf="!user">
-      <button mat-menu-item routerLink="/login">Login</button>
-    </ng-container>
-    <ng-container *ngIf="user">
-      <button mat-menu-item (click)="onLogout()">Logout</button>
-    </ng-container>
-  </mat-menu>
-
+  <div class="mobile_nav">
+    <button mat-button routerLink="/cart">
+      <mat-icon
+        [matBadge]="itemsCount > 0 ? itemsCount : null"
+        matBadgeColor="warn"
+        >shopping_cart</mat-icon
+      >
+    </button>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <ng-container *ngIf="user?.isAdmin">
+        <button mat-menu-item routerLink="/admin">Admin</button>
+      </ng-container>
+      <button mat-menu-item routerLink="/">Menu</button>
+      <ng-container *ngIf="!user">
+        <button mat-menu-item routerLink="/login">Login</button>
+      </ng-container>
+      <ng-container *ngIf="user">
+        <button mat-menu-item (click)="onLogout()">Logout</button>
+      </ng-container>
+    </mat-menu>
+  </div>
   <div class="nav">
     <ng-container *ngIf="user?.isAdmin">
       <button mat-button routerLink="/admin">Admin</button>

@@ -17,6 +17,12 @@
 
 @media (max-width: 959px) {
     .dish-form {
+        min-width: 400px;
+    }
+}
+
+@media (max-width: 659px) {
+    .dish-form {
         min-width: auto;
     }
 }

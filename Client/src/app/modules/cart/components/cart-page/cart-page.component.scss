@@ -13,3 +13,9 @@
         margin: 0;
     }
 }
+
+.quantity-cell-content {
+    display: flex;
+    align-items: center;
+    flex-flow: nowrap;
+}
