@@ -16,8 +16,7 @@ class UserController {
 
       res.cookie("userData", userData, {
         httpOnly: false,
-        secure: true,
-        sameSite: "none",
+        secure: false,
       });
       return res.json(userData);
     } catch (error) {
